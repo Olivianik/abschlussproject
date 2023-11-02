@@ -1,4 +1,5 @@
 
+
 class UnderBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
     init {
         actions = listOf(
@@ -18,8 +19,6 @@ class UnderBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
         }
     }
 }
-
-
 
 
 

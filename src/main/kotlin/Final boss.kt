@@ -1,5 +1,5 @@
 class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
-    private var isUsedUnderBoss: Boolean
+    var isUsedUnderBoss: Boolean
 
     init {
         isUsedUnderBoss = false
@@ -17,7 +17,6 @@ class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
         } else {
             actions.random()
         }
-
         if (randomAction.name == "FireBall") {
             team.heroes.forEach { hero ->
                 hero.takeDamage(randomAction.damage)
@@ -33,7 +32,6 @@ class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
     }
 
 }
-
 
 
 
