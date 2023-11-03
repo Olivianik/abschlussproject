@@ -21,7 +21,7 @@ open class Hero(val name: String, val maxHp: Int) {
         println("2. Use a healing potion")
         println("3. Use a vitamin")
 
-        var action: Action? = null
+        val action: Action?
         var actionNumber : Int
         while (true) {
             actionNumber = userInput.getInt("Enter your choice (1, 2, or 3):")
@@ -32,69 +32,93 @@ open class Hero(val name: String, val maxHp: Int) {
         }
         when (actionNumber) {
             1 -> {
-                while (action == null){
-                    println("$name's available actions: ${actions.joinToString(", ") { it.name }}")
-                    val actionName =
-                        userInput.getString("Choose an action from available actions: ")
-                    action = actions.find { it.name == actionName }
-                    // Check if the action damage is positive (attacking) or negative (healing)
-                    if (action != null) {
-                        var damage = action.damage
+                println("$name's available actions:")
+                for ((index, action) in actions.withIndex()) {
+                    println("${index + 1}. ${action.name}")
+                }
 
-                        // Check if the hero is taking vitamin, and if so, increase damage by 10%
-                        if (isTakingVitamin) {
-                            damage = (damage * 1.10).toInt()
-                        }
+                var selectedActionIndex: Int
 
-                        if (damage == 0) {
-                            isProtectiveSpell = true
-                        } else if (damage > 0) {
-                            if ((0..100).random() >= 30) {
-                                damage = (damage * 1.5).toInt()
-                                opponent.takeDamage(damage)
-                                println("$name attacks ${opponent.name} for $damage damage (Critical Hit)!")
-                            } else {
-                                opponent.takeDamage(damage)
-                                println("$name attacks ${opponent.name} for $damage damage.")
-                            }
+                while (true) {
+                    selectedActionIndex = userInput.getInt("Choose an action by number:")
+                    userInput.consumeNewLine()
+
+                    if (selectedActionIndex in 1..actions.size) {
+                        action = actions[selectedActionIndex - 1]
+                        break
+                    }
+                    println("Invalid choice. Please select a valid action.")
+                }
+
+                if (action != null) {
+                    var damage = action.damage
+
+                    // Check if the hero is taking vitamin, and if so, increase damage by 10%
+                    if (isTakingVitamin) {
+                        damage = (damage * 1.10).toInt()
+                    }
+
+                    if (damage == 0) {
+                        isProtectiveSpell = true
+                    } else if (damage > 0) {
+                        if ((0..100).random() >= 30) {
+                            damage = (damage * 1.5).toInt()
+                            opponent.takeDamage(damage)
+                            println("$name attacks ${opponent.name} for $damage damage (Critical Hit)!")
                         } else {
-                            heal(-1*damage)
-                            println("$name heals for ${-damage} HP.")
+                            opponent.takeDamage(damage)
+                            println("$name attacks ${opponent.name} for $damage damage.")
                         }
+                    } else {
+                        heal(-1 * damage)
+                        println("$name heals for $damage HP.")
                     }
-                    if (action == null) {
-                        println("Invalid action. Choose from available actions.")
-                    }
+                } else {
+                    println("Invalid action. Choose from available actions.")
                 }
             }
 
-                2 -> {
-            val heroToHeal =
-                userInput.getString("Enter the name of the hero to give the healing potion to: ")
-            val targetHero = team.findHeroByName(heroToHeal)
-            if (targetHero != null) {
-                bag.useHealingPotion(targetHero)
-            } else {
-                println("Invalid hero name.")
+            2 -> {
+                val heroToHeal =
+                    userInput.getString("Enter the name of the hero to give the healing potion to: ")
+                val targetHero = team.findHeroByName(heroToHeal)
+                if (targetHero != null) {
+                    bag.useHealingPotion(targetHero)
+                } else {
+                    println("Invalid hero name.")
+                }
             }
-        }
 
-                3 -> {
-            val heroToGiveVitamin =
-                userInput.getString("Enter the name of the hero to give the vitamin to: ")
-            val targetHero = team.findHeroByName(heroToGiveVitamin)
-            if (targetHero != null) {
-                bag.takeVitamin(targetHero)
-            } else {
-                println("Invalid hero name.")
+            3 -> {
+                val heroToGiveVitamin =
+                    userInput.getString("Enter the name of the hero to give the vitamin to: ")
+                val targetHero = team.findHeroByName(heroToGiveVitamin)
+                if (targetHero != null) {
+                    bag.takeVitamin(targetHero)
+                } else {
+                    println("Invalid hero name.")
+                }
             }
-        }
 
             else -> {
                 println("Invalid choice. Please select 1, 2, or 3.")
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     fun isAlive(): Boolean = hp > 0
 
