@@ -54,6 +54,7 @@ open class Hero(val name: String, val maxHp: Int) {
                                 opponent.takeDamage(damage)
                                 println("$name attacks ${opponent.name} for $damage damage (Critical Hit)!")
                             } else {
+                                opponent.takeDamage(damage)
                                 println("$name attacks ${opponent.name} for $damage damage.")
                             }
                         } else {

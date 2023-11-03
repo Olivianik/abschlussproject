@@ -16,7 +16,7 @@ open class Opponent(val name: String, val maxHp: Int) {
     fun isAlive(): Boolean = hp > 0
 
     fun printOpponentHp(){
-        println("Boss: $name - HP: $hp")
+        println("Boss: $name - HP: ${maxOf(0,hp)}")
     }
 
 }
