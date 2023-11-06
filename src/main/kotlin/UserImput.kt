@@ -12,7 +12,7 @@ class UserInput {
                 print(prompt)
                 return scanner.nextInt()
             } catch (e: InputMismatchException) {
-                println("Invalid input. Please enter a valid integer.")
+                println("Ungültige Eingabe. Bitte geben Sie eine gültige Ganzzahl ein.")
                 scanner.nextLine()
             }
         }

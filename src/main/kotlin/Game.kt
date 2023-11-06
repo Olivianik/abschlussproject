@@ -5,22 +5,22 @@ class Game(private val team: Team, private val finalBoss: FinalBoss, private val
     private val userInput = UserInput()
     fun start() {
         val gameName = """
-        ||| --- --- --- --- --- |||
-        ||| --- Many ---------- |||
-        ||| --- kenf ---------- |||
-        ||| --- --- --- --- --- |||
+        ||| --- --- --- --- --- -- ---- -- -- --   |||
+        ||| ---------- Grendizer ---------------   |||
+        ||| ---------- The Battle Arena --------   |||
+        ||| --- --- --- --- --- -- -- -- -- -- --  |||
     """.trimIndent()
         println(gameName)
 
         println("Welcome to the Game!")
         while (true) {
-            println("Enter 1 to play or 2 to exit: ")
+            println("Geben Sie 1 zum Abspielen oder 2 zum Beenden ein: ")
             val input = readlnOrNull()
             if (input != null) {
                 if (input.toIntOrNull() == 1) {
                     team.printHeroesHp()
                     finalBoss.printOpponentHp()
-                    println("Let the battle begin!")
+                    println("Lasst den Kampf beginnen!")
 
                     while (team.isAnyHeroAlive() && (finalBoss.isAlive() || (underBoss != null && underBoss!!.isAlive()))) {
 
@@ -28,10 +28,10 @@ class Game(private val team: Team, private val finalBoss: FinalBoss, private val
                             if (hero.isAlive()) {
                                 println("${hero.name}'s turn:")
                                 val actionTarget = if (underBoss != null && underBoss!!.isAlive()) {
-                                    println("Choose a target:")
+                                    println("Wählen Sie ein Ziel:")
                                     println("1. Final Boss")
                                     println("2. Under Boss")
-                                    val targetChoice = userInput.getInt("Enter your choice (1 or 2): ")
+                                    val targetChoice = userInput.getInt("Geben Sie Ihre Wahl ein (1 or 2): ")
                                     userInput.consumeNewLine()
                                     if (targetChoice == 1) finalBoss else underBoss!!
                                 } else {
@@ -48,7 +48,7 @@ class Game(private val team: Team, private val finalBoss: FinalBoss, private val
                         // Check if the UnderBoss needs to be created
                         if (finalBoss.isUsedUnderBoss && underBoss == null) {
                             underBoss = UnderBoss("UnderBoss", 100)
-                            println("The Final Boss created the UnderBoss!")
+                            println("The Final Boss erstellt the UnderBoss!")
                             underBoss!!.printOpponentHp()
                         }
 
@@ -65,17 +65,17 @@ class Game(private val team: Team, private val finalBoss: FinalBoss, private val
                     }
 
                     if (team.isAnyHeroAlive()) {
-                        println("Congratulations! You defeated Them.")
+                        println("Glückwunsch! Du hast sie besiegt..")
                     } else {
-                        println("You were defeated by Them. Game Over!")
+                        println("Ich habe sie besiegt. Game Over!")
                     }
                 } else if (input.toIntOrNull() == 2) {
                     exitProcess(0)
                 } else {
-                    println("please choose 1 or 2 ")
+                    println("bitte auswählen 1 or 2 ")
                 }
             } else {
-                println("please choose 1 or 2 ")
+                println("bitte auswählen 1 or 2 ")
             }
         }
 

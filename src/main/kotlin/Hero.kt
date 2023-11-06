@@ -16,23 +16,23 @@ open class Hero(val name: String, val maxHp: Int) {
     }
 
     fun doSomeAction(opponent: Opponent, bag: Bag, team: Team) {
-        println("Choose an action for $name:")
-        println("1. Perform an action")
-        println("2. Use a healing potion")
-        println("3. Use a vitamin")
+        println("Wahl einer Aktion für $name:")
+        println("1. Führen Sie eine Aktion aus")
+        println("2. Benutze einen Heilkraft")
+        println("3. Verwenden Sie ein Vitamin")
 
         val action: Action?
         var actionNumber : Int
         while (true) {
-            actionNumber = userInput.getInt("Enter your choice (1, 2, or 3):")
+            actionNumber = userInput.getInt("Geben Sie Ihre Wal ein (1, 2, or 3):")
             userInput.consumeNewLine()
             if(actionNumber in 1..3)
                 break
-            println("Invalid choice. Please select 1, 2, or 3.")
+            println("Ungültige Auswahl. Please select 1, 2, or 3.")
         }
         when (actionNumber) {
             1 -> {
-                println("$name's available actions:")
+                println("$name's verfürgbar actions:")
                 for ((index, action) in actions.withIndex()) {
                     println("${index + 1}. ${action.name}")
                 }
@@ -40,20 +40,20 @@ open class Hero(val name: String, val maxHp: Int) {
                 var selectedActionIndex: Int
 
                 while (true) {
-                    selectedActionIndex = userInput.getInt("Choose an action by number:")
+                    selectedActionIndex = userInput.getInt("Wählen Sie eine Aktionsmummer:")
                     userInput.consumeNewLine()
 
                     if (selectedActionIndex in 1..actions.size) {
                         action = actions[selectedActionIndex - 1]
                         break
                     }
-                    println("Invalid choice. Please select a valid action.")
+                    println("Ungültige Auswahl. Bitte wählen Sie eine gültige Aktion aus.")
                 }
 
                 if (action != null) {
                     var damage = action.damage
 
-                    // Check if the hero is taking vitamin, and if so, increase damage by 10%
+                    // CÜberprüfen Sie, ob der Held Vitamine einnimmt, und erhöhen Sie in diesem Fall den Schaden um 10 %.
                     if (isTakingVitamin) {
                         damage = (damage * 1.10).toInt()
                     }
@@ -74,34 +74,34 @@ open class Hero(val name: String, val maxHp: Int) {
                         println("$name heals for $damage HP.")
                     }
                 } else {
-                    println("Invalid action. Choose from available actions.")
+                    println("Ungültige Aktion. Wählen Sie aus den verfügbaren Aktionen.")
                 }
             }
 
             2 -> {
                 val heroToHeal =
-                    userInput.getString("Enter the name of the hero to give the healing potion to: ")
+                    userInput.getString("Geben Sie den Namen des Helden ein, dem Sie den Heiltrank geben möchten: ")
                 val targetHero = team.findHeroByName(heroToHeal)
                 if (targetHero != null) {
                     bag.useHealingPotion(targetHero)
                 } else {
-                    println("Invalid hero name.")
+                    println("Ungültiger  hero name.")
                 }
             }
 
             3 -> {
                 val heroToGiveVitamin =
-                    userInput.getString("Enter the name of the hero to give the vitamin to: ")
+                    userInput.getString("Geben Sie den Namen des Helden ein, dem Sie das Vitamin geben möchten: ")
                 val targetHero = team.findHeroByName(heroToGiveVitamin)
                 if (targetHero != null) {
                     bag.takeVitamin(targetHero)
                 } else {
-                    println("Invalid hero name.")
+                    println("Ungültig hero name.")
                 }
             }
 
             else -> {
-                println("Invalid choice. Please select 1, 2, or 3.")
+                println("Ungültige Auswahl. Bitte auswählen 1, 2, or 3.")
             }
         }
     }
