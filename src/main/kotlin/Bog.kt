@@ -1,13 +1,13 @@
-class Bag(var healingPotions: Int = 3, var vitamins: Int = 1) {
+class Bag(var healingPotions: Int = 3, var vitamins: Int = 3, var isUsedThisRound: Boolean = false) {
     fun useHealingPotion(hero: Hero) {
         if (healingPotions > 0) {
             val halfOfMaxHp = hero.maxHp / 2
             if (hero.getHp() < halfOfMaxHp) {
-                val remaingToHalf = halfOfMaxHp - hero.getHp()
-                hero.heal(remaingToHalf)
+                val remainToHalf = halfOfMaxHp - hero.getHp()
+                hero.heal(remainToHalf)
             }
             healingPotions--
-            println("${hero.name} uses a healing potion and restores half of his HP.")
+            println("${hero.name} uses a healing potion and restores half of his HP if his hp was under the half.")
         } else {
             println("No healing potions left.")
         }

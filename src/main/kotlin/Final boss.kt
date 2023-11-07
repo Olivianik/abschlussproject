@@ -1,12 +1,16 @@
+
 class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
     var isUsedUnderBoss: Boolean
 
     init {
         isUsedUnderBoss = false
         actions = listOf(
-            Action("FireBall", 70), // dmg all heroes
-            Action("hunt", 10), // chose one hero and dmg him by 10% of his hp
-            Action("UseUnderBoss", 0)
+            Action("Fire ball", 70),
+            Action("hunt", 10),
+            Action("Use under boss", 0),
+            Action("Snow ball", 40),
+            Action("Curse", 40),
+            Action("Poison", 40),
         )
     }
 
@@ -17,29 +21,31 @@ class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
         } else {
             actions.random()
         }
-        if (randomAction.name == "FireBall") {
-            team.heroes.forEach { hero ->
-                hero.takeDamage(randomAction.damage)
+        when (randomAction.name) {
+            "Fire ball" -> {
+                team.heroes.forEach { hero ->
+                    val damage = randomAction.damage
+                    hero.takeDamage(damage)
+                    println("Final boss attacks ${hero.name} with Fire ball for $damage damage.")
+                }
             }
-        } else if (randomAction.name == "hunt") {
-            val randomHero = team.heroes.random()
-            val dmgBy10Percent = (randomHero.getHp() * 0.10).toInt()
-            randomHero.takeDamage(dmgBy10Percent)
-        } else if (randomAction.name == "UseUnderBoss") {
-            isUsedUnderBoss = true
+            "hunt" -> {
+                val randomHero = team.heroes.random()
+                val damage = (randomHero.getHp() * 0.10).toInt()
+                randomHero.takeDamage(damage)
+                println("Final boss attacks ${randomHero.name} with hunt for $damage damage.")
+            }
+            "Snow ball", "Curse", "Poison" -> {
+                val randomHero = team.heroes.random()
+                val damage = randomAction.damage
+                randomHero.takeDamage(damage)
+                println("Final boss attacks ${randomHero.name} with ${randomAction.name} for $damage damage.")
+            }
+            "Use under boss" -> {
+                isUsedUnderBoss = true
+            }
         }
 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

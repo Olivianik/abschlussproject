@@ -1,3 +1,4 @@
+
 open class Opponent(val name: String, val maxHp: Int) {
     var hp: Int
     var actions: List<Action>
@@ -15,12 +16,11 @@ open class Opponent(val name: String, val maxHp: Int) {
 
     fun isAlive(): Boolean = hp > 0
 
-    fun printOpponentHp(){
-        println("Boss: $name - HP: ${maxOf(0,hp)}")
+    fun printOpponentHp() {
+        println("Boss: $name - HP: ${maxOf(0, hp)}")
     }
 
 }
-
 
 
 
