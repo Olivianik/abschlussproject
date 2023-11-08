@@ -8,8 +8,8 @@
 ## Features
 
 
-1.Der Spieler wählt zunächst seinen Charakter aus Krieger, Magician und warrior
-2.Jeder von ihnen erbt von der übergeordneten classe, der Heroclasse
+- 1.Der Spieler wählt zunächst seinen Charakter aus Krieger, Magician und warrior
+- 2.Jeder von ihnen erbt von der übergeordneten classe, der Heroclasse
 3.Der Spieler beginnt das Spiel und trifft auf zwei Arten von Monstern: ein FinalBoss und ein UnderBoss.
 Sie erben von der Opponetclasse.
 4.Der Spieler beginnt das Spiel und trifft auf zwei Arten von Monstern: ein FinalBoss und ein UnderBoss.
