@@ -1,4 +1,5 @@
 
+
 class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
     var isUsedUnderBoss: Boolean
 
@@ -46,6 +47,12 @@ class FinalBoss(name: String, maxHp: Int) : Opponent(name, maxHp) {
             }
         }
 
-    }
 
-}
+
+
+
+
+
+
+
+

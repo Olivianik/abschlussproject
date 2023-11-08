@@ -13,7 +13,7 @@ class Main {
                     Warrior("warrior", 100)
                 )
             )
-            val bag = Bag(3,3)
+            val bag = Bag(3,1)
             val finalBoss = FinalBoss("Final Boss", 500)
             val game = Game(team, finalBoss, bag)
             game.start()
