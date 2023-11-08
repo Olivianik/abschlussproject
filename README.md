@@ -1,5 +1,5 @@
-# Dillinger
-## _The Last Markdown Editor, Ever_
+# G O L D E N S Y N T A X
+## The Batle Arena
 
 
 
