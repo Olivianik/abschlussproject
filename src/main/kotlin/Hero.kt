@@ -27,13 +27,7 @@ open class Hero(val name: String, val maxHp: Int) {
                 println("${index + 1}. ${action.name}")
             }
 
-            val canUseBag = !bag.isUsedThisRound
-
-            if (canUseBag) {
-                println("${actions.size + 1}. Use Bag")
-            } else {
-                println("${actions.size + 1}. Use Bag (Unavailable)")
-            }
+            println("${actions.size + 1}. Use Bag")
 
             actionNumber = userInput.getInt("Enter your choice: ")
             userInput.consumeNewLine()
@@ -66,7 +60,7 @@ open class Hero(val name: String, val maxHp: Int) {
                     }
                     break
                 } else {
-                    if (canUseBag) {
+
                         println("1. Use a healing potion : ${bag.healingPotions}")
                         println("2. Use a vitamin : ${bag.vitamins}")
                         var bagActionNumber: Int
@@ -87,11 +81,7 @@ open class Hero(val name: String, val maxHp: Int) {
                             }
                             println("Invalid choice. Please select 1 or 2 only.")
                         }
-                        bag.isUsedThisRound = true
-                        break
-                    } else {
-                        println("The bag cannot be used in this round. Please select a valid action.")
-                    }
+
                 }
             } else {
                 println("Invalid choice. Please select a valid action.")

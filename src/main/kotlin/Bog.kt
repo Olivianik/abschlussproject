@@ -1,4 +1,4 @@
-class Bag(var healingPotions: Int = 3, var vitamins: Int = 3, var isUsedThisRound: Boolean = false) {
+class Bag(var healingPotions: Int = 3, var vitamins: Int = 1, var isUsedThisRound: Boolean = false) {
     fun useHealingPotion(hero: Hero) {
         if (healingPotions > 0) {
             val halfOfMaxHp = hero.maxHp / 2

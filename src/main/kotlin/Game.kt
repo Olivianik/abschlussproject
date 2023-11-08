@@ -31,7 +31,9 @@ class Game(private val team: Team, private val finalBoss: FinalBoss, private val
                 finalBoss.doSomeAction(team)
             }
 
-            // Check if the UnderBoss needs to be created
+            // Überprüfen Sie, ob der UnderBoss erstellt werden muss
+
+            finalBoss.isUsedUnderBoss=true
             if (finalBoss.isUsedUnderBoss && underBoss == null) {
                 underBoss = UnderBoss("UnderBoss", 100)
                 println("The Final Boss created the UnderBoss!")
