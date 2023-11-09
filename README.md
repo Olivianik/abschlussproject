@@ -21,3 +21,18 @@ Nach Abschluss jeder Runde werden die HP jedes Charakters und Monsters angezeigt
 - 8.Der Computer wählt zufällig die Bewegungen der Feinde aus und greift die Kämpfer an.
 - 9.Das Spiel geht weiter, bis alle Feinde oder die drei Krieger sterben
 - 10.Das Spiel endet und der Punktestand wird angezeigt, wenn alle Monster getötet wurden oder alle drei Charakter sterben.
+
+
+
+## Game code erklärung
+
+Dieser Code stellt eine Klasse namens "Spiel" dar, die ein privates Attribut "team" vom Typ "Team", ein privates Attribut "finalboss" vom Typ "Finalboss" und ein privates Attribut "bag" vom Typ "Bag" enthält. Es gibt auch eine optionale Variable "underboss" vom Typ "Opponent", die anfangs auf "null" gesetzt ist, und ein Attribut "userinput" vom Typ "Userinput".
+Die Klasse hat eine Methode namens "start()", die den Spielablauf steuert.
+Der Code beginnt mit einer Willkommensnachricht, gefolgt von der Anzeige der aktuellen Lebenspunkte der Helden des Teams und des Lebenspunktestands des Endbosses.
+Dann beginnt eine Schleife, die solange läuft, wie entweder ein Held im Team am Leben ist und der Endboss oder der Unterboss (falls vorhanden) noch am Leben ist.
+Innerhalb dieser Schleife durchläuft der Code alle Helden im Team und überprüft, ob der jeweilige Held noch am Leben ist. Wenn ja, wird eine Aktion für diesen Held ausgeführt. Vor der Ausführung der Aktion wird überprüft, ob ein Unterboss vorhanden ist. Falls ja, wird der Spieler aufgefordert, ein Ziel auszuwählen - entweder den Endboss oder den Unterboss. Basierend auf der Wahl des Spielers wird das entsprechende Ziel ausgewählt und die Aktion wird für den Helden ausgeführt.
+Danach wird überprüft, ob der Endboss noch am Leben ist. Falls ja, führt der Endboss eine Aktion gegen das Team aus.
+Es wird auch überprüft, ob der Unterboss erstellt werden muss. Wenn das Attribut "isusedunderboss" des Endbosses true ist und der Unterboss noch nicht erstellt wurde, wird ein Unterboss erstellt und eine entsprechende Nachricht wird ausgegeben.
+Wenn der Unterboss existiert und noch am Leben ist, führt er eine Aktion gegen das Team aus.
+Am Ende jeder Runde werden die aktuellen Lebenspunkte der Helden im Team und des Endbosses angezeigt. Wenn ein Unterboss existiert, werden auch seine aktuellen Lebenspunkte angezeigt.
+Sobald die Schleife beendet ist, wird überprüft, ob noch ein Held im Team am Leben ist. Wenn ja, wird eine Glückwunschnachricht ausgegeben. Andernfalls wird eine Nachricht angezeigt, dass das Team besiegt wurde und das Spiel vorbei ist.
